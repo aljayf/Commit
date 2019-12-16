@@ -42,11 +42,41 @@ module.exports = function (ctx) {
       //            (not treeshaking Quasar; biggest bundle size; convenient)
       all: 'auto',
 
-      components: [],
-      directives: [],
+      components: [
+        'QHeader',
+        'QFooter',
+        'QCard',
+        'QToolbar',
+        'QToolbarTitle',
+        'QCard',
+        'QCardSection',
+        'QCardActions',
+        'QLayout',
+        'QPageContainer',
+        'QPage',
+        'QDialog',
+        'QForm',
+        'QInput',
+        'QSelect',
+        'QBtnDropdown',
+        'QChip',
+        'QTime',
+        'QDate',
+        'QCarousel',
+        'QCarouselControl',
+        'QCarouselSlide'
+      ],
+      directives: [
+        'ClosePopup'
+      ],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'Notify'
+      ],
+      config: {
+        notify: { /* Notify defaults */ }
+      }
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
