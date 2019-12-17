@@ -22,6 +22,7 @@
       <q-tabs align="left">
         <q-route-tab to="/home" label="Home" />
         <q-route-tab to="/calendar" label="Calendar" />
+        <q-route-tab to="/expenses" label="Expenses"/>
       </q-tabs>
     </q-header>
 
@@ -35,12 +36,22 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'MyLayout',
 
   data () {
     return {
       leftDrawerOpen: false
+    }
+  },
+  computed: {
+    ...mapGetters({
+      user: 'Authentication/user'
+    }),
+    isLoggedIn () {
+      return this.user != null
     }
   }
 }

@@ -3,6 +3,7 @@ const routes = [
   {
     path: '/',
     component: () => import('layouts/MyLayout.vue'),
+    meta: { authRequired: true },
     children: [
       {
         name: 'Landing',
@@ -28,6 +29,18 @@ const routes = [
         name: 'TimeManagement',
         path: 'timeManagement',
         component: () => import('pages/TimeManagementPage.vue')
+      }
+    ]
+  },
+  {
+    path: '/auth',
+    redirect: 'auth/login',
+    component: () => import('layouts/Authentication.vue'),
+    children: [
+      {
+        path: 'login',
+        name: 'Login',
+        component: () => import('pages/PageAuth.vue')
       }
     ]
   }
