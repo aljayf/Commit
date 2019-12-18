@@ -1,7 +1,10 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+import * as firebase from 'firebase/app'
+// import 'firebase/firestore'
 import 'firebase/database'
+import 'firebase/auth'
 // import firebase from '../../firebase-conf'
+// import firebase from 'firebase'
+// require('firebase/auth')
 
 var firebaseConfig = {
   apiKey: 'AIzaSyCM0p54bNUYUuz_uP51bzBMKjzoae0YCu8',
@@ -17,4 +20,4 @@ let firebaseApp = firebase.initializeApp(firebaseConfig)
 let firebaseAuth = firebaseApp.auth()
 let firebaseDb = firebaseApp.database()
 
-export default { firebaseAuth, firebaseDb }
+export { firebaseAuth, firebaseDb }

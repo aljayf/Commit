@@ -10,8 +10,8 @@
           Commit
         </q-toolbar-title>
         <div>
-          <q-btn flat label="Login/Signup" />
-          <q-btn round>
+          <q-btn flat label="Login/Signup" v-if="!userDetails.userId"/>
+          <q-btn round v-else @click="logoutUser">
             <q-avatar size="42px">
               <img src="https://cdn.quasar.dev/img/avatar2.jpg">
             </q-avatar>
@@ -37,6 +37,7 @@
 
 <script>
 // import { mapGetters } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'MyLayout',
@@ -47,12 +48,16 @@ export default {
     }
   },
   computed: {
+    ...mapState('auth', ['userDetails'])
     // ...mapGetters({
     //   user: 'Authentication/user'
     // }),
     // isLoggedIn () {
     //   return this.user != null
     // }
+  },
+  methods: {
+    ...mapActions('auth', ['logoutUser'])
   }
 }
 </script>

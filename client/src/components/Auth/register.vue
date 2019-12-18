@@ -5,7 +5,7 @@
         <template v-slot:avatar>
           <q-icon name="account_circle" color="primary" />
         </template>
-        {{ tab | titleCase }} to save your dive plans!
+        {{ tab | titleCase }} and Commit!
       </q-banner>
     </div>
     <div class="row q-mb-md">

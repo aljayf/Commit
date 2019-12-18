@@ -1,12 +1,16 @@
-import { firebaseAuth } from 'firebase'
+import { firebaseAuth, firebaseDb } from '../boot/firebase'
 
 const state = {
-  loggedIn: false
+  loggedIn: false,
+  userDetails: {}
 }
 
 const mutations = {
   setLoggedIn (state, value) {
     state.loggedIn = value
+  },
+  setUserDetails (state, payload) {
+    state.userDetails = payload
   }
 }
 
@@ -21,6 +25,10 @@ const actions = {
   registerUser (a = {}, payload) {
     firebaseAuth.createUserWithEmailAndPassword(payload.email, payload.password).then(response => {
       console.log('response: ', response)
+      let userId = firebaseAuth.currentUser.uid
+      firebaseDb.ref('users/' + userId).set({
+        email: payload.email
+      })
     }).catch(error => {
       console.log('error.message: ', error.message)
     })
@@ -28,12 +36,22 @@ const actions = {
   logoutUser () {
     firebaseAuth.signOut()
   },
-  handleAuthStateChange ({ commit }) {
+  handleAuthStateChanged ({ commit }) {
     firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
+        let userId = firebaseAuth.currentUser.uid
+        firebaseDb.ref('users/' + userId).once('value', snapshot => {
+          let userDetails = snapshot.val()
+          console.log('userDetails', userDetails)
+          commit('setUserDetails', {
+            email: userDetails.email,
+            userId: userId
+          })
+        })
         commit('setLoggedIn', true)
-        this.$router.push('/dive-plan').catch(err => { console.log(err) })
+        this.$router.push('/').catch(err => { console.log(err) })
       } else {
+        commit('setUserDetails', {})
         commit('setLoggedIn', false)
         this.$router.replace('/auth').catch(err => { console.log(err) })
       }
