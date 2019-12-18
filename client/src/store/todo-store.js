@@ -1,12 +1,17 @@
-import { firebaseAuth, firebaseDb } from 'boot/firebase'
-const state = {
+// import Firebase from 'firebase'
+import 'firebase/database'
 
+const state = {
+  todoList: [],
+  task: {}
 }
 const mutations = {
 
 }
 const actions = {
-
+  addTask ({ commit }, payload) {
+    console.log('blah', payload)
+  }
 }
 const getters = {
 

@@ -27,65 +27,7 @@
     </q-card-section>
   </q-card>
   <q-dialog :value="toolbar">
-    <task-modal></task-modal>
-    <!--<q-card style="width: 500px">-->
-      <!--<q-toolbar>-->
-        <!--<q-toolbar-title><span class="text-weight-bold">Task</span></q-toolbar-title>-->
-        <!--<q-btn flat round dense icon="close" v-close-popup />-->
-      <!--</q-toolbar>-->
-      <!--<q-separator />-->
-      <!--<q-card-section>-->
-        <!--<q-form-->
-          <!--@submit="onSubmit"-->
-          <!--@reset="onReset"-->
-          <!--class="q-gutter-md"-->
-        <!--&gt;-->
-          <!--<q-select-->
-            <!--filled-->
-            <!--v-model="category"-->
-            <!--:options="options"-->
-            <!--label="Category"-->
-            <!--color="primary"-->
-          <!--&gt;-->
-            <!--<template v-slot:selected-item="scope">-->
-              <!--<q-chip-->
-                <!--removable-->
-                <!--@remove="scope.removeAtIndex(scope.index)"-->
-                <!--:tabindex="scope.tabindex"-->
-                <!--color="white"-->
-                <!--text-color="primary"-->
-                <!--class="q-ma-none"-->
-              <!--&gt;-->
-                <!--<q-avatar color="primary" text-color="white" :icon="scope.opt.icon" />-->
-                <!--{{ scope.opt.label }}-->
-              <!--</q-chip>-->
-            <!--</template>-->
-          <!--</q-select>-->
-          <!--<q-input-->
-            <!--type="date"-->
-            <!--filled-->
-            <!--v-model="date"-->
-            <!--label="Date"-->
-          <!--/>-->
-          <!--<q-input-->
-            <!--filled-->
-            <!--v-model="task"-->
-            <!--label="Task"-->
-          <!--/>-->
-          <!--<q-input-->
-            <!--filled-->
-            <!--type="text"-->
-            <!--v-model="goal"-->
-            <!--label="Goal"-->
-            <!--hint="Description"-->
-          <!--/>-->
-          <!--<div>-->
-            <!--<q-btn label="Submit" type="submit" color="primary"/>-->
-            <!--<q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />-->
-          <!--</div>-->
-        <!--</q-form>-->
-      <!--</q-card-section>-->
-    <!--</q-card>-->
+    <task-modal @clicked="onClickChild"></task-modal>
   </q-dialog>
 </div>
 </template>
@@ -146,19 +88,8 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      this.$q.notify({
-        color: 'green-4',
-        textColor: 'white',
-        icon: 'cloud_done',
-        message: 'Task Added'
-      })
-    },
-
-    onReset () {
-      this.task = null
-      this.goal = null
-      this.category = null
+    onClickChild (value) {
+      console.log('got that bitch back', value) // someValue
     }
   }
 }

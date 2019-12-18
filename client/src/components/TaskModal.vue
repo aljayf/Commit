@@ -75,6 +75,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'TaskModal',
   props: {
@@ -82,9 +84,6 @@ export default {
   },
   data () {
     return {
-      todoList: [{
-        todo: null
-      }],
       taskObject: {
         startDate: null,
         endDate: null,
@@ -122,10 +121,14 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      addTask: 'Todo/addTask'
+    }),
     addTask () {
-      this.todoList.push({
-        todo: this.taskObject
-      })
+      this.addTask(this.taskObject)
+      // this.todoList.push({
+      //   todo: this.taskObject
+      // })
     },
     onReset () {
       this.taskObject.startDate = null
@@ -133,6 +136,9 @@ export default {
       this.taskObject.task = null
       this.taskObject.goal = null
       this.taskObject.category = null
+    },
+    onClickButton (event) {
+      this.$emit('clicked', 'someValue')
     }
   }
 }

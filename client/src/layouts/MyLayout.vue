@@ -10,7 +10,7 @@
           Commit
         </q-toolbar-title>
         <div>
-          <q-btn flat label="Login/Signup" />
+          <q-btn flat label="Logout" @click="logout"/>
           <q-btn round>
             <q-avatar size="42px">
               <img src="https://cdn.quasar.dev/img/avatar2.jpg">
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'MyLayout',
@@ -44,6 +44,15 @@ export default {
   data () {
     return {
       leftDrawerOpen: false
+    }
+  },
+  methods: {
+    ...mapActions({
+      logoutUser: 'Authentication/logoutUser'
+    }),
+    logout () {
+      console.log('*** LOGGING OUT ***')
+      this.logoutUser()
     }
   },
   computed: {

@@ -56,13 +56,23 @@ export default {
     }
   },
   methods: {
-    ...mapActions('auth', ['registerUser', 'loginUser']),
+    ...mapActions({
+      loginUser: 'Authentication/loginUser',
+      registerUser: 'Authentication/registerUser'
+    }),
     submitForm () {
       this.$refs.email.validate()
       this.$refs.password.validate()
       if (!this.$refs.email.hasError && !this.$refs.password.hasError) {
         if (this.tab.toString() === 'login') {
           this.loginUser(this.formData)
+            .then(user => {
+              this.$router.replace({ name: 'dashboard' }).catch(() => {})
+            })
+            .catch(error => {
+              this.$q.notify('Invalid Login!')
+              console.error(`Not signed in: ${error.message}`)
+            })
         } else {
           this.registerUser(this.formData)
         }
