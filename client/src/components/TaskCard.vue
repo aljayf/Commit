@@ -26,8 +26,8 @@
       </q-list>
     </q-card-section>
   </q-card>
-  <q-dialog v-model="toolbar">
-    <task-modal v-bind:task="{ todo }"></task-modal>
+  <q-dialog :value="toolbar">
+    <task-modal></task-modal>
     <!--<q-card style="width: 500px">-->
       <!--<q-toolbar>-->
         <!--<q-toolbar-title><span class="text-weight-bold">Task</span></q-toolbar-title>-->

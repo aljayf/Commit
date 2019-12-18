@@ -13,6 +13,7 @@
       <task-card></task-card>
       <calendar-card></calendar-card>
     </div>
+    <calandar-task-card></calandar-task-card>
   </div>
 </div>
 </template>
@@ -22,9 +23,10 @@ import TotalAssignments from '../components/TotalAssignments'
 import TaskCard from '../components/TaskCard'
 import CalendarCard from '../components/CalendarCard'
 import MotivationCarousel from '../components/MotivationCarousel'
+import CalandarTaskCard from '../components/CalandarTaskCard'
 export default {
   name: 'Main',
-  components: { MotivationCarousel, CalendarCard, TaskCard, TotalAssignments }
+  components: { CalandarTaskCard, MotivationCarousel, CalendarCard, TaskCard, TotalAssignments }
 }
 </script>
 
@@ -32,7 +34,7 @@ export default {
 .myown {
   padding-left: 100px;
   padding-right: 100px;
-  padding-top: 20cpx;
+  padding-top: 20px;
   padding-bottom: 20px;
 }
 </style>

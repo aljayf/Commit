@@ -9,7 +9,7 @@ export default ({ auth, router, Vue, store }) => {
         next()
       } else {
         next({
-          name: 'LogIn'
+          name: 'Login'
         })
       }
     } else {

@@ -11,7 +11,7 @@
         </q-toolbar-title>
         <div>
           <q-btn flat label="Login/Signup" />
-          <q-btn round v-if="isLoggedIn">
+          <q-btn round>
             <q-avatar size="42px">
               <img src="https://cdn.quasar.dev/img/avatar2.jpg">
             </q-avatar>
@@ -26,17 +26,17 @@
       </q-tabs>
     </q-header>
 
-    <q-page-containecr>
+    <q-page-container>
       <q-page>
         <router-view />
       </q-page>
-    </q-page-containecr>
+    </q-page-container>
 
   </q-layout>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 
 export default {
   name: 'MyLayout',
@@ -47,12 +47,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      user: 'Authentication/user'
-    }),
-    isLoggedIn () {
-      return this.user != null
-    }
+    // ...mapGetters({
+    //   user: 'Authentication/user'
+    // }),
+    // isLoggedIn () {
+    //   return this.user != null
+    // }
   }
 }
 </script>

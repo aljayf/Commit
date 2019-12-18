@@ -7,13 +7,14 @@
     <q-separator />
     <q-card-section>
       <q-form
-        @submit="onSubmit"
+        @submit="addTask"
         @reset="onReset"
         class="q-gutter-md"
       >
         <q-select
+          outlined
           filled
-          v-model="category"
+          v-model="taskObject.category"
           :options="options"
           label="Category"
           color="primary"
@@ -27,26 +28,40 @@
               text-color="primary"
               class="q-ma-none"
             >
-              <q-avatar color="primary" text-color="white" :icon="scope.opt.icon" />
+              <q-avatar color="primary" text-color="white" :icon="scope.opt.icon"/>
               {{ scope.opt.label }}
             </q-chip>
           </template>
         </q-select>
+        <div class="row">
+          <q-input outlined
+            type="date"
+            filled
+            v-model="taskObject.startDate"
+            label="Start Date"
+            class="col-6"
+                   style="padding-right: 5px"
+          />
+          <q-input outlined
+            type="date"
+            filled
+            v-model="taskObject.endDate"
+            label="End Date"
+            class="col-6"
+                   style="padding-left: 5px"
+          />
+        </div>
         <q-input
-          type="date"
+          outlined
           filled
-          v-model="date"
-          label="Date"
-        />
-        <q-input
-          filled
-          v-model="task"
+          v-model="taskObject.task"
           label="Task"
         />
         <q-input
+          outlined
           filled
           type="text"
-          v-model="goal"
+          v-model="taskObject.goal"
           label="Goal"
           hint="Description"
         />
@@ -64,6 +79,61 @@ export default {
   name: 'TaskModal',
   props: {
     todo: Object
+  },
+  data () {
+    return {
+      todoList: [{
+        todo: null
+      }],
+      taskObject: {
+        startDate: null,
+        endDate: null,
+        task: null,
+        goal: null,
+        category: null
+      },
+      options: [
+        {
+          label: 'Homework',
+          value: 'homework',
+          icon: 'assignment'
+        },
+        {
+          label: 'Chore',
+          value: 'chore',
+          icon: 'check_circle'
+        },
+        {
+          label: 'Fitness',
+          value: 'fitness',
+          icon: 'fitness_center'
+        },
+        {
+          label: 'Work',
+          value: 'work',
+          icon: 'build'
+        },
+        {
+          label: 'Miscellaneous',
+          value: 'miscellaneous',
+          icon: 'grade'
+        }
+      ]
+    }
+  },
+  methods: {
+    addTask () {
+      this.todoList.push({
+        todo: this.taskObject
+      })
+    },
+    onReset () {
+      this.taskObject.startDate = null
+      this.taskObject.endDate = null
+      this.taskObject.task = null
+      this.taskObject.goal = null
+      this.taskObject.category = null
+    }
   }
 }
 </script>
