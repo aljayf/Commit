@@ -7,7 +7,7 @@
       <total-assignments class="col-6"></total-assignments>
       <balance-card class="col-6"></balance-card>
     </div>
-    <div id="goodstuff" class="row justify-between">
+    <div id="goodstuff" class="row justify-around">
       <task-card></task-card>
       <calendar-card></calendar-card>
     </div>

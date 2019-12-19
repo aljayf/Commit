@@ -2,7 +2,7 @@
   <div style="padding: 20px">
     <q-card class="q-my-lg q-card--bordered q-card--flat no-shadow">
       <q-card-section class="text-grey">
-        <div class="text-subtitle2">balance Left</div>
+        <div class="text-subtitle2">Remaining Balance</div>
       </q-card-section>
       <q-separator dark inset />
       <q-card-section>

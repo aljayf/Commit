@@ -15,7 +15,6 @@
     <q-separator />
     <q-list bordered separator>
       <q-item v-for="(todo, key) in tasks" :key="key" clickable @click="openEditTaskModal(todo)">
-        {{ todo }}
         <q-item-section avatar>
           <q-avatar color="primary" text-color="white" :icon="todo.category.icon" />
         </q-item-section>

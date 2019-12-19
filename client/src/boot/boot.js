@@ -21,6 +21,10 @@ export default ({ app, router, Vue, store }) => {
       store.dispatch('Todo/firebaseGetTasks', {
         userId: userId
       })
+      // get completed task amount
+      store.dispatch('Todo/firebaseGetCompleted', {
+        userId: userId
+      })
       // get expenses
       store.dispatch('Expense/firebaseGetExpenses', {
         userId: userId

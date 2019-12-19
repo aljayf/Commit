@@ -22,8 +22,10 @@ const mutations = {
     // write to tasks object
     // console.log('addTask Payload', payload)
     Vue.set(state.tasks, payload.taskId, payload.taskDetails)
+  },
+  setCompleted (state, payload) {
+    state.completed = payload.completedAmount
   }
-
 }
 const actions = {
   addTodo ({ commit }, payload) {
@@ -80,6 +82,17 @@ const actions = {
   },
   firebaseStopGettingTasks () {
     console.log('firebaseStopGettingTasks')
+  },
+  firebaseGetCompleted ({ commit }) {
+    let firebaseAuth = Firebase.auth()
+    let firebaseDb = Firebase.database()
+    let userId = firebaseAuth.currentUser.uid
+    firebaseDb.ref('completed/' + userId).once('value', snapshot => {
+      let completedAmount = snapshot.val()
+      commit('setCompleted', {
+        completedAmount
+      })
+    })
   }
 }
 const getters = {
@@ -89,6 +102,9 @@ const getters = {
   task: state => {
     console.log('state.tasks', state.tasks)
     return state.tasks
+  },
+  completed: state => {
+    return state.completed
   }
 }
 
