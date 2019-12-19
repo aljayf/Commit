@@ -17,6 +17,8 @@ export default ({ app, router, Vue, store }) => {
           userId: userId
         })
       })
+      // route to main page
+      router.replace({ name: 'Main' }).catch(() => {})
       // get todoList
       store.dispatch('Todo/firebaseGetTasks', {
         userId: userId
@@ -33,8 +35,6 @@ export default ({ app, router, Vue, store }) => {
       store.dispatch('Expense/firebaseGetbalance', {
         userId: userId
       })
-      // route to main page
-      router.replace({ name: 'Main' }).catch(() => {})
     } else {
       // reset state and returns to login
       store.commit('Authentication/setUserDetails', {})
