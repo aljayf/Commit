@@ -4,12 +4,10 @@
   <div class="myown">
     <div id="overview" class="row">
       <!--Overview-->
-      <total-assignments class="col-4"></total-assignments>
-      <total-assignments class="col-4"></total-assignments>
-      <total-assignments class="col-4"></total-assignments>
+      <total-assignments class="col-6"></total-assignments>
+      <balance-card class="col-6"></balance-card>
     </div>
     <div id="goodstuff" class="row justify-between">
-      <task-card></task-card>
       <task-card></task-card>
       <calendar-card></calendar-card>
     </div>
@@ -24,9 +22,10 @@ import TaskCard from '../components/TaskCard'
 import CalendarCard from '../components/CalendarCard'
 import MotivationCarousel from '../components/MotivationCarousel'
 import CalandarTaskCard from '../components/CalandarTaskCard'
+import BalanceCard from '../components/BalanceCard'
 export default {
   name: 'Main',
-  components: { CalandarTaskCard, MotivationCarousel, CalendarCard, TaskCard, TotalAssignments }
+  components: { BalanceCard, CalandarTaskCard, MotivationCarousel, CalendarCard, TaskCard, TotalAssignments }
 }
 </script>
 

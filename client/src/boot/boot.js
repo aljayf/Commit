@@ -21,6 +21,14 @@ export default ({ app, router, Vue, store }) => {
       store.dispatch('Todo/firebaseGetTasks', {
         userId: userId
       })
+      // get expenses
+      store.dispatch('Expense/firebaseGetExpenses', {
+        userId: userId
+      })
+      // get balance/balance
+      store.dispatch('Expense/firebaseGetbalance', {
+        userId: userId
+      })
       // route to main page
       router.replace({ name: 'Main' }).catch(() => {})
     } else {

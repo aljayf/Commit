@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <budget-card></budget-card>
+    <balance-card></balance-card>
     <expense-table></expense-table>
   </div>
 </template>
 
 <script>
-import BudgetCard from '../components/BudgetCard'
+import BalanceCard from '../components/BalanceCard'
 import ExpenseTable from '../components/ExpenseTable'
 export default {
   name: 'ExpensesPage',
-  components: { ExpenseTable, BudgetCard }
+  components: { ExpenseTable, BalanceCard }
 }
 </script>
 

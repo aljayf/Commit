@@ -8,35 +8,44 @@
         </div>
 
         <div class="col-6" align="right">
-          <q-btn round color="primary" icon="add" @click="toolbar = true"/>
+          <q-btn round color="primary" icon="add" @click="newTaskModal = true"/>
         </div>
       </div>
     </q-card-section>
     <q-separator />
     <q-list bordered separator>
-      <q-item v-for="(todo, key) in tasks" :key="key" clickable @click="toolbar = true">
+      <q-item v-for="(todo, key) in tasks" :key="key" clickable @click="openEditTaskModal(todo)">
+        {{ todo }}
         <q-item-section avatar>
           <q-avatar color="primary" text-color="white" :icon="todo.category.icon" />
         </q-item-section>
         <q-item-section>
           <q-item-label>{{ todo.task }}</q-item-label>
+          <q-item-label caption>{{ todo.goal }}</q-item-label>
+        </q-item-section>
+        <q-item-section side>
+          <q-item-label caption>{{ todo.taskDate }}</q-item-label>
         </q-item-section>
       </q-item>
     </q-list>
   </q-card>
-  <q-dialog :value="toolbar">
+  <q-dialog :value="newTaskModal">
     <task-modal v-on:task-added="taskAdded"></task-modal>
+  </q-dialog>
+  <q-dialog :value="editTaskModal">
+    <edit-modal :task="selectedTask" v-on:edit-task="editTask"></edit-modal>
   </q-dialog>
 </div>
 </template>
 
 <script>
 import TaskModal from './TaskModal'
+import EditModal from './EditModal'
 import { mapActions, mapGetters, mapState } from 'vuex'
 
 export default {
   name: 'TaskCard',
-  components: { TaskModal },
+  components: { TaskModal, EditModal },
   data () {
     return {
       // todoList: [{
@@ -49,15 +58,9 @@ export default {
       //     icon: 'fitness_center'
       //   }
       // }],
-      toolbar: false,
-      task: null,
-      goal: null,
-      date: null,
-      category: {
-        label: null,
-        value: null,
-        icon: null
-      },
+      newTaskModal: false,
+      editTaskModal: false,
+      selectedTask: {},
       options: [
         {
           label: 'Homework',
@@ -90,7 +93,15 @@ export default {
   methods: {
     taskAdded (value) {
       console.log('got that bitch back', value) // someValue
-      this.toolbar = value
+      this.newTaskModal = value
+    },
+    editTask (value) {
+      this.editTaskModal = value
+    },
+    openEditTaskModal (task) {
+      this.editTaskModal = true
+      this.selectedTask = task
+      // this.editTask(false)
     },
     ...mapActions({
       firebaseGetTasks: 'Todo/firebaseGetTasks',

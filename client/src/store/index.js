@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Authentication from './auth-store'
 import Todo from './todo-store'
+import Expense from './expense-store'
 // import store from './../store'
 // import example from './module-example'
 
@@ -17,7 +18,8 @@ export default function (/* { ssrContext } */) {
     modules: {
       // example
       Authentication,
-      Todo
+      Todo,
+      Expense
     },
 
     // enable strict mode (adds overhead!)

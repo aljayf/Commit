@@ -7,7 +7,7 @@
     <q-separator />
     <q-card-section>
       <q-form
-        @submit="addTask"
+        @submit="editTask"
         @reset="onReset"
         class="q-gutter-md"
       >
@@ -34,10 +34,10 @@
           </template>
         </q-select>
         <q-input outlined
-          type="date"
-          filled
-          v-model="taskObject.taskDate"
-          label="Date"
+                 type="date"
+                 filled
+                 v-model="taskObject.taskDate"
+                 label="Start Date"
         />
         <q-input
           outlined
@@ -66,17 +66,21 @@
 import { mapActions, mapGetters, mapState } from 'vuex'
 
 export default {
-  name: 'TaskModal',
+  name: 'EditModal',
   props: {
-    todo: Object
+    id: String,
+    task: {
+      type: Object,
+      required: true
+    }
   },
   data () {
     return {
       taskObject: {
-        taskDate: null,
-        task: null,
-        goal: null,
-        category: null
+        taskDate: this.task.taskDate,
+        task: this.task.task,
+        goal: this.task.goal,
+        category: this.task.category
       },
       options: [
         {
@@ -109,10 +113,12 @@ export default {
   },
   methods: {
     ...mapActions({
-      addTodo: 'Todo/addTodo'
+      editTodo: 'Todo/editTodo'
     }),
-    addTask () {
-      this.addTodo(this.taskObject)
+    editTask () {
+      console.log('*** EDIT TASK', this.taskObject)
+
+      this.editTodo(this.taskObject)
       // this.todoList.push({
       //   todo: this.taskObject
       // })
@@ -122,18 +128,17 @@ export default {
       this.closeModal()
     },
     onReset () {
-      this.taskObject.startDate = null
-      this.taskObject.endDate = null
+      this.taskObject.taskDate = null
       this.taskObject.task = null
       this.taskObject.goal = null
       this.taskObject.category = null
     },
     onClickButton (event) {
-      this.$emit('task-added', false)
+      this.$emit('edit-task', false)
       console.log('event', event)
     },
     closeModal (event) {
-      this.$emit('task-added', false)
+      this.$emit('edit-task', false)
       console.log('event', event)
     }
   },
