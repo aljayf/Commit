@@ -16,7 +16,7 @@
 
       <q-tabs align="left">
         <q-route-tab to="/home" label="Home" />
-        <q-route-tab to="/calendar" label="Calendar" />
+        <!--<q-route-tab to="/calendar" label="Calendar" />-->
         <q-route-tab to="/expenses" label="Expenses"/>
       </q-tabs>
     </q-header>

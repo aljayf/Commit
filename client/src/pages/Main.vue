@@ -11,7 +11,7 @@
       <task-card></task-card>
       <calendar-card></calendar-card>
     </div>
-    <calandar-task-card></calandar-task-card>
+    <!--<calandar-task-card></calandar-task-card>-->
   </div>
 </div>
 </template>
@@ -21,11 +21,11 @@ import TotalAssignments from '../components/TotalAssignments'
 import TaskCard from '../components/TaskCard'
 import CalendarCard from '../components/CalendarCard'
 import MotivationCarousel from '../components/MotivationCarousel'
-import CalandarTaskCard from '../components/CalandarTaskCard'
+// import CalandarTaskCard from '../components/CalandarTaskCard'
 import BalanceCard from '../components/BalanceCard'
 export default {
   name: 'Main',
-  components: { BalanceCard, CalandarTaskCard, MotivationCarousel, CalendarCard, TaskCard, TotalAssignments }
+  components: { BalanceCard, MotivationCarousel, CalendarCard, TaskCard, TotalAssignments }
 }
 </script>
 

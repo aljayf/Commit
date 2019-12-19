@@ -46,7 +46,8 @@ export default {
           name: 'money',
           label: 'Money',
           align: 'left',
-          field: 'money'
+          field: 'money',
+          sortable: true
         },
         {
           name: 'remainingBalance',
