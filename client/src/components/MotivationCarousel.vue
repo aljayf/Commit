@@ -8,26 +8,20 @@
     >
       <q-carousel-slide name="first" img-src="https://cdn.quasar.dev/img/mountains.jpg">
         <div class="absolute-bottom custom-caption">
-          <div class="text-h2">Motivational Quote #1</div>
-          <div class="text-subtitle1">- Person who said it</div>
+          <div class="text-h2">“The Way Get Started Is To Quit Talking And Begin Doing.”</div>
+          <div class="text-subtitle1">- Walt Disney</div>
         </div>
       </q-carousel-slide>
       <q-carousel-slide name="second" img-src="https://cdn.quasar.dev/img/parallax1.jpg">
         <div class="absolute-bottom custom-caption">
-          <div class="text-h2">Motivational Quote #2</div>
-          <div class="text-subtitle1">- Person who said it</div>
+          <div class="text-h2">“Don’t Let Yesterday Take Up Too Much Of Today.”</div>
+          <div class="text-subtitle1">- Will Rogers</div>
         </div>
       </q-carousel-slide>
-      <q-carousel-slide name="third" img-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4UiVXQ2jpa2y5V1WcNzIPyqjpoXFQGVwBUqNH6vYXqOZpgQlEpQ&s">
+      <q-carousel-slide name="third" img-src="https://cdn.quasar.dev/img/parallax2.jpg">
         <div class="absolute-bottom custom-caption">
-          <div class="text-h6">"Have You Ever Thought That You Were in Love With Someone But Then Realized You Were Looking in the Mirror for 20 Minutes?"</div>
-          <div class="text-subtitle1">- Kanye West</div>
-        </div>
-      </q-carousel-slide>
-      <q-carousel-slide name="fourth" img-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN9jT2mpCSRN91Y2XpMFr1areAb1gw3_YnFl49SUjiU-P6IEdz&s">
-        <div class="absolute-bottom custom-caption">
-          <div class="text-h6">"McDonalds is my Favorite Brand"</div>
-          <div class="text-subtitle1">- Kanye West</div>
+          <div class="text-h2">“Security Is Mostly A Superstition. Life Is Either A Daring Adventure Or Nothing.”</div>
+          <div class="text-subtitle1">– Helen Keller</div>
         </div>
       </q-carousel-slide>
     </q-carousel>
