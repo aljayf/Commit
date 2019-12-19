@@ -15,7 +15,7 @@
     <q-separator />
     <q-card-section>
       <q-list>
-        <q-item v-for="todo in todoList" :key="todo.id" clickable @click="toolbar = true">
+        <q-item v-for="(todo, key) in tasks" :key="key" clickable @click="toolbar = true">
           <q-item-section avatar>
             <q-avatar color="primary" text-color="white" :icon="todo.category.icon" />
           </q-item-section>
@@ -27,28 +27,30 @@
     </q-card-section>
   </q-card>
   <q-dialog :value="toolbar">
-    <task-modal @clicked="onClickChild"></task-modal>
+    <task-modal v-on:task-added="taskAdded"></task-modal>
   </q-dialog>
 </div>
 </template>
 
 <script>
 import TaskModal from './TaskModal'
+import { mapActions, mapGetters, mapState } from 'vuex'
+
 export default {
   name: 'TaskCard',
   components: { TaskModal },
   data () {
     return {
-      todoList: [{
-        task: 'Run',
-        goal: 'Burn 50kcal',
-        date: null,
-        category: {
-          label: 'Fitness',
-          value: 'fitness',
-          icon: 'fitness_center'
-        }
-      }],
+      // todoList: [{
+      //   task: 'Run',
+      //   goal: 'Burn 50kcal',
+      //   date: null,
+      //   category: {
+      //     label: 'Fitness',
+      //     value: 'fitness',
+      //     icon: 'fitness_center'
+      //   }
+      // }],
       toolbar: false,
       task: null,
       goal: null,
@@ -88,9 +90,25 @@ export default {
     }
   },
   methods: {
-    onClickChild (value) {
+    taskAdded (value) {
       console.log('got that bitch back', value) // someValue
-    }
+      this.toolbar = value
+    },
+    ...mapActions({
+      firebaseGetTasks: 'Todo/firebaseGetTasks',
+      firebaseStopGettingTasks: 'Todo/firebaseStopGettingTasks'
+    })
+  },
+  computed: {
+    ...mapState({
+      tasks: 'Todo/tasks'
+    }),
+    ...mapGetters({
+      tasks: 'Todo/tasks'
+    })
+  },
+  destroyed () {
+    this.firebaseStopGettingTasks()
   }
 }
 </script>

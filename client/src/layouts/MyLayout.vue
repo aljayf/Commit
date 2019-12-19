@@ -11,11 +11,6 @@
         </q-toolbar-title>
         <div>
           <q-btn flat label="Logout" @click="logout"/>
-          <q-btn round>
-            <q-avatar size="42px">
-              <img src="https://cdn.quasar.dev/img/avatar2.jpg">
-            </q-avatar>
-          </q-btn>
         </div>
       </q-toolbar>
 
@@ -36,7 +31,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'MyLayout',
@@ -56,6 +51,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      userDetails: 'Authentication/setUserDetails'
+    })
     // ...mapGetters({
     //   user: 'Authentication/user'
     // }),

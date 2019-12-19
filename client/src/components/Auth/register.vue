@@ -5,7 +5,7 @@
         <template v-slot:avatar>
           <q-icon name="account_circle" color="primary" />
         </template>
-        {{ tab | titleCase }} to save your dive plans!
+        {{ tab | titleCase }} and Commit!
       </q-banner>
     </div>
     <div class="row q-mb-md">
@@ -67,7 +67,7 @@ export default {
         if (this.tab.toString() === 'login') {
           this.loginUser(this.formData)
             .then(user => {
-              this.$router.replace({ name: 'dashboard' }).catch(() => {})
+              this.$router.replace({ name: 'Main' }).catch(() => {})
             })
             .catch(error => {
               this.$q.notify('Invalid Login!')

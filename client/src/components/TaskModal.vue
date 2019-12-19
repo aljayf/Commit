@@ -122,13 +122,14 @@ export default {
   },
   methods: {
     ...mapActions({
-      addTask: 'Todo/addTask'
+      addTodo: 'Todo/addTodo'
     }),
     addTask () {
-      this.addTask(this.taskObject)
+      this.addTodo(this.taskObject)
       // this.todoList.push({
       //   todo: this.taskObject
       // })
+      this.onClickButton()
     },
     onReset () {
       this.taskObject.startDate = null
@@ -138,7 +139,8 @@ export default {
       this.taskObject.category = null
     },
     onClickButton (event) {
-      this.$emit('clicked', 'someValue')
+      this.$emit('task-added', false)
+      console.log('event', event)
     }
   }
 }

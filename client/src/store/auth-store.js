@@ -5,7 +5,7 @@ export default {
   namespaced: true,
 
   state: {
-    userDetails: null
+    userDetails: {}
   },
 
   getters: {
@@ -23,6 +23,8 @@ export default {
     },
     setUserDetails (state, payload) {
       state.userDetails = payload
+      console.log('set user Dets', payload)
+      console.log('we set state user details')
     }
   },
 
@@ -46,7 +48,8 @@ export default {
         console.log('response: ', response)
         let userId = firebaseAuth.currentUser.uid
         firebaseDb.ref('users/' + userId).set({
-          email: payload.email
+          email: payload.email,
+          userId: userId
         })
       }).catch(error => {
         console.log('error.message: ', error.message)
