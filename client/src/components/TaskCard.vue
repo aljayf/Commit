@@ -13,18 +13,16 @@
       </div>
     </q-card-section>
     <q-separator />
-    <q-card-section>
-      <q-list>
-        <q-item v-for="(todo, key) in tasks" :key="key" clickable @click="toolbar = true">
-          <q-item-section avatar>
-            <q-avatar color="primary" text-color="white" :icon="todo.category.icon" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>{{ todo.task }}</q-item-label>
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-card-section>
+    <q-list bordered separator>
+      <q-item v-for="(todo, key) in tasks" :key="key" clickable @click="toolbar = true">
+        <q-item-section avatar>
+          <q-avatar color="primary" text-color="white" :icon="todo.category.icon" />
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>{{ todo.task }}</q-item-label>
+        </q-item-section>
+      </q-item>
+    </q-list>
   </q-card>
   <q-dialog :value="toolbar">
     <task-modal v-on:task-added="taskAdded"></task-modal>

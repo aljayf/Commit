@@ -6,11 +6,12 @@ import Vue from 'vue'
 const state = {
   todoList: [],
   task: {},
-  tasks: {}
+  tasks: {},
+  completed: {}
 }
 const mutations = {
   addToTodoList (state, payload) {
-    state.todoList.push(payload)
+    Vue.set(state.tasks, payload.taskId, payload.taskDetails)
     console.log('pushed todolist')
   },
   makeTask (state, payload) {
@@ -35,13 +36,20 @@ const actions = {
     let addedEndDate = payload.endDate
     let addedTask = payload.task
     let addedGoal = payload.goal
+    // let wholeTask = {
+    //   category: addedCategory,
+    //   startDate: addedStartDate,
+    //   endDate: addedEndDate,
+    //   task: addedTask,
+    //   goal: addedGoal
+    // }
     firebaseDb.ref('todoList/' + userId).set({
-      category: payload.category,
-      startDate: payload.startDate,
-      endDate: payload.endDate,
-      task: payload.task,
-      goal: payload.goal,
-      complete: false
+      // category: payload.category,
+      // startDate: payload.startDate,
+      // endDate: payload.endDate,
+      // task: payload.task,
+      // goal: payload.goal,
+      // complete: false
     }, function (error) {
       if (error) {
         // The write failed...
@@ -64,22 +72,20 @@ const actions = {
     })
   },
   firebaseGetTasks ({ commit, state }) {
-    // let firebaseAuth = Firebase.auth()
+    let firebaseAuth = Firebase.auth()
     let firebaseDb = Firebase.database()
-    // let userId = firebaseAuth.currentUser.uid
+    let userId = firebaseAuth.currentUser.uid
     console.log('firebaseGetTasks')
-    firebaseDb.ref('todoList').on('child_added', snapshot => {
-      let todoList = snapshot.val()
-      let todoListKey = snapshot.key
-      console.log('todoList', todoList)
-      console.log('task Key', todoListKey)
-      // commit('addTask', {
-      //   todoListItem
-      // })
-      // commit('addTask', {
-      //   taskId,
-      //   todoListDetails
-      // })
+    firebaseDb.ref('todoList/' + userId).on('child_added', snapshot => {
+      let taskDetails = snapshot.val()
+      let taskId = snapshot.key
+      console.log('getTask Snapshot Key', snapshot.key)
+      console.log('taskDetails', taskDetails)
+      console.log('taskId', taskId)
+      commit('addTask', {
+        taskId,
+        taskDetails
+      })
     })
   },
   firebaseStopGettingTasks () {
